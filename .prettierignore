@@ -1,0 +1,4 @@
+.npm
+.next
+node_modules
+dist
