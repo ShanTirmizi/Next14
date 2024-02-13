@@ -8,13 +8,9 @@ export const Profile = async () => {
     return redirectToSignUp();
   }
 
-  console.log(user, 'user');
-
   const profile = await db.profile.findUnique({
     where: { userId: user.id },
   });
-
-  console.log(profile, 'profile');
 
   if (profile) {
     return profile;
