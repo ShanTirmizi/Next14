@@ -5,6 +5,7 @@
   },
   "rules": {
     // This will we can still have unused variables in the code, just add an underscore before the variable name
-    "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }]
+    "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }],
+    "no-console": "warn"
   }
 }

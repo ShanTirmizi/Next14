@@ -1,3 +1,4 @@
+import CreateServerModal from '@/components/create-server-modal';
 import { ModeToggle } from '@/components/mode-toggle';
 import { db } from '@/lib/db';
 import { Profile } from '@/lib/profile';
@@ -21,10 +22,13 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <ModeToggle />
-      <h1>Hello World</h1>
-      <UserButton afterSignOutUrl="/" />
-    </div>
+    <>
+      <div className="flex justify-center items-center min-h-screen">
+        <ModeToggle />
+        <h1>Hello World</h1>
+        <UserButton afterSignOutUrl="/" />
+        <CreateServerModal />
+      </div>
+    </>
   );
 }
