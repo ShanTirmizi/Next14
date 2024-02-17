@@ -1,4 +1,5 @@
 'use client';
+import FileUpload from '@/components/file-upload';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -19,10 +20,11 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import FileUpload from './file-upload';
 
 const createServerModalSchema = z.object({
   name: z.string().min(3, {
@@ -36,6 +38,7 @@ const createServerModalSchema = z.object({
 type TCreateServerModalSchema = z.infer<typeof createServerModalSchema>;
 
 const CreateServerModal = () => {
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -57,7 +60,15 @@ const CreateServerModal = () => {
   } = form;
 
   const onSubmit = async (data: TCreateServerModalSchema) => {
-    reset();
+    try {
+      await axios.post('/api/servers', data);
+
+      reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isMounted) return null;

@@ -1,4 +1,4 @@
-import CreateServerModal from '@/components/create-server-modal';
+import CreateServerModal from '@/components/modals/create-server-modal';
 import { ModeToggle } from '@/components/mode-toggle';
 import { db } from '@/lib/db';
 import { Profile } from '@/lib/profile';
@@ -18,7 +18,7 @@ export default async function Home() {
   });
 
   if (server) {
-    return redirect(`/server/${server.id}`);
+    return redirect(`/servers/${server.id}`);
   }
 
   return (
