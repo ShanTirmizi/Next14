@@ -63,6 +63,7 @@ const CreateServerModal = () => {
       router.refresh();
       window.location.reload();
       reset();
+      close();
     } catch (error) {
       console.error(error);
     }
