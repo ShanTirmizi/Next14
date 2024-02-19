@@ -40,3 +40,47 @@ export async function POST(req: Request) {
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json();
+    const profile = await userProfile();
+
+    if (!profile) {
+      return new NextResponse('Unauthorized', { status: 401 });
+    }
+
+    await db.member.deleteMany({
+      where: {
+        serverId: id,
+      },
+    });
+
+    await db.channel.deleteMany({
+      where: {
+        serverId: id,
+      },
+    });
+
+    const server = await db.server.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!server) {
+      return new NextResponse('Not Found', { status: 404 });
+    }
+
+    await db.server.delete({
+      where: {
+        id,
+      },
+    });
+
+    return new NextResponse('Deleted', { status: 204 });
+  } catch (error) {
+    console.error(error);
+    return new NextResponse('Internal Server Error', { status: 500 });
+  }
+}

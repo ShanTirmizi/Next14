@@ -1,4 +1,4 @@
-import CreateServerModal from '@/components/modals/create-server-modal';
+import CreateServerModal from '@/components/modals/create-initial-server-modal';
 import { ModeToggle } from '@/components/mode-toggle';
 import { db } from '@/lib/db';
 import { Profile } from '@/lib/profile';

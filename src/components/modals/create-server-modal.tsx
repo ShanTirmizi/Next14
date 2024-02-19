@@ -8,6 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Form,
@@ -19,10 +20,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useModal } from '@/hooks/use-modal';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -38,12 +39,9 @@ const createServerModalSchema = z.object({
 type TCreateServerModalSchema = z.infer<typeof createServerModalSchema>;
 
 const CreateServerModal = () => {
-  const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
+  const { isOpen, close } = useModal();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(createServerModalSchema),
@@ -62,20 +60,26 @@ const CreateServerModal = () => {
   const onSubmit = async (data: TCreateServerModalSchema) => {
     try {
       await axios.post('/api/servers', data);
-
-      reset();
       router.refresh();
       window.location.reload();
+      reset();
+      close();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
-  if (!isMounted) return null;
+  const handleClose = () => {
+    reset();
+    close();
+  };
 
   return (
     <>
-      <Dialog open>
+      <Dialog open={isOpen} onOpenChange={handleClose}>
+        <DialogTrigger asChild>
+          <Button variant="outline">Create a new server</Button>
+        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create a Server</DialogTitle>
