@@ -39,7 +39,7 @@ const createServerModalSchema = z.object({
 type TCreateServerModalSchema = z.infer<typeof createServerModalSchema>;
 
 const CreateServerModal = () => {
-  const { isOpen, close } = useModal();
+  const { isOpen, close, type } = useModal();
 
   const router = useRouter();
 
@@ -74,9 +74,11 @@ const CreateServerModal = () => {
     close();
   };
 
+  const isModalOpen = isOpen && type === 'createServer';
+
   return (
     <>
-      <Dialog open={isOpen} onOpenChange={handleClose}>
+      <Dialog open={isModalOpen} onOpenChange={handleClose}>
         <DialogTrigger asChild>
           <Button variant="outline">Create a new server</Button>
         </DialogTrigger>
