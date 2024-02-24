@@ -44,7 +44,10 @@ const ServerHeader = ({ role, server }: ServerHeaderProps) => {
             </DropdownMenuItem>
           )}
           {mod && (
-            <DropdownMenuItem className="px-3 py-2 cursor-pointer">
+            <DropdownMenuItem
+              className="px-3 py-2 cursor-pointer"
+              onClick={() => open('createChannel', { server })}
+            >
               Create channels
             </DropdownMenuItem>
           )}
@@ -62,7 +65,10 @@ const ServerHeader = ({ role, server }: ServerHeaderProps) => {
             </DropdownMenuItem>
           )}
           {!admin && (
-            <DropdownMenuItem className="px-3 py-2 cursor-pointer text-rose-500">
+            <DropdownMenuItem
+              className="px-3 py-2 cursor-pointer text-rose-500"
+              onClick={() => open('leaveServer', { server })}
+            >
               Leave server
             </DropdownMenuItem>
           )}
