@@ -1,7 +1,9 @@
 'use client';
 
+import CreateChannelModal from '@/components/modals/create-channel-modal';
 import CreateServerModal from '@/components/modals/create-server-modal';
 import InviteModal from '@/components/modals/invite-modal';
+import LeaveServerModal from '@/components/modals/leave-server-modal';
 import ManageMemberModal from '@/components/modals/manage-member-modal';
 import ServerSettingsModal from '@/components/modals/server-setting-modal';
 import { useEffect, useState } from 'react';
@@ -24,6 +26,8 @@ export const ModalProvider = () => {
       <InviteModal />
       <ServerSettingsModal />
       <ManageMemberModal />
+      <CreateChannelModal />
+      <LeaveServerModal />
     </>
   );
 };
