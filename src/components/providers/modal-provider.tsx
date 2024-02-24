@@ -2,6 +2,8 @@
 
 import CreateServerModal from '@/components/modals/create-server-modal';
 import InviteModal from '@/components/modals/invite-modal';
+import ManageMemberModal from '@/components/modals/manage-member-modal';
+import ServerSettingsModal from '@/components/modals/server-setting-modal';
 import { useEffect, useState } from 'react';
 
 export const ModalProvider = () => {
@@ -20,6 +22,8 @@ export const ModalProvider = () => {
     <>
       <CreateServerModal />
       <InviteModal />
+      <ServerSettingsModal />
+      <ManageMemberModal />
     </>
   );
 };
