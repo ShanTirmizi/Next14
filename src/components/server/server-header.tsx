@@ -36,7 +36,10 @@ const ServerHeader = ({ role, server }: ServerHeaderProps) => {
             </DropdownMenuItem>
           )}
           {admin && (
-            <DropdownMenuItem className="px-3 py-2 cursor-pointer">
+            <DropdownMenuItem
+              className="px-3 py-2 cursor-pointer"
+              onClick={() => open('serverSettings', { server })}
+            >
               Settings
             </DropdownMenuItem>
           )}
@@ -46,7 +49,10 @@ const ServerHeader = ({ role, server }: ServerHeaderProps) => {
             </DropdownMenuItem>
           )}
           {admin && (
-            <DropdownMenuItem className="px-3 py-2 cursor-pointer">
+            <DropdownMenuItem
+              className="px-3 py-2 cursor-pointer"
+              onClick={() => open('manageMembers', { server })}
+            >
               Manage members
             </DropdownMenuItem>
           )}
